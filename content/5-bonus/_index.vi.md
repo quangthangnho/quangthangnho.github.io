@@ -6,7 +6,7 @@ chapter : false
 pre : " <b> 5. </b> "
 ---
 
->Xin chúc mừng bạn đã xuất sắc hoàn thành workshop này! Đây là một cột mốc quan trọng trong hành trình học tập của bạn. Để củng cố và kiểm tra lại những kiến thức mà bạn đã tiếp thu, chúng ta sẽ cùng tham gia vào một trò chơi nhỏ. Trò chơi bao gồm 20 #### Câu hỏi, và việc trả lời đúng sẽ giúp bạn xác nhận sự hiểu biết sâu sắc của mình. Chúc bạn thật nhiều may mắn và thành công!
+>Xin chúc mừng bạn đã xuất sắc hoàn thành workshop này! Đây là một cột mốc quan trọng trong hành trình học tập của bạn. Để củng cố và kiểm tra lại những kiến thức mà bạn đã tiếp thu, chúng ta sẽ cùng tham gia vào một trò chơi nhỏ. Trò chơi bao gồm 20 Câu hỏi, và việc trả lời đúng sẽ giúp bạn xác nhận sự hiểu biết sâu sắc của mình. Chúc bạn thật nhiều may mắn và thành công!
 
 
 ![ConnectPrivate](/images/ALB1.drawio.png)
