@@ -1,0 +1,134 @@
+[
+{
+	"uri": "/vi/",
+	"title": "Application Load Balancer",
+	"tags": [],
+	"description": "",
+	"content": "Thiết kế hệ thông cân bằng tải cho các máy chủ riêng tư sử dụng Application Load Balancer Tổng quan Trong bài lab này, bạn sẽ khám phá các khái niệm cơ bản và thực hành sử dụng Amazon Application Load Balancer. Bạn sẽ học cách thiết lập kết nối và cân bằng tải cho ứng dụng nằm trong các máy chủ riêng tư bên trong một VPC.\nNội dung Giới thiệu Các bước chuẩn bị Kiểm tra Dọn dẹp tài nguyên Phần ôn tập kiến thức "
+},
+{
+	"uri": "/vi/1-introduce/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Trong workshop này, bạn sẽ học cách triển khai và cấu hình một hệ thống sử dụng Amazon Application Load Balancer (ALB) để phân phối lưu lượng truy cập vào các ứng dụng web nằm trong các máy chủ EC2 riêng tư. Bằng cách sử dụng ALB, bạn có thể đảm bảo rằng lưu lượng truy cập được phân phối đều giữa các máy chủ, giúp cải thiện hiệu suất và độ tin cậy của ứng dụng.\nChức năng của Load Balancer Load Balancer đóng vai trò là điểm tiếp nhận duy nhất cho tất cả các yêu cầu từ người dùng. Nó sẽ phân phối các yêu cầu này đến các instance EC2 trong target group dựa trên các quy tắc được cấu hình. Điều này giúp cải thiện tính sẵn sàng của ứng dụng và tối ưu hóa việc sử dụng tài nguyên.\nChức năng của Application Load Balancer (ALB) Amazon Application Load Balancer (ALB) chịu trách nhiệm phân phối lưu lượng truy cập từ người dùng đến các ứng dụng chạy trên các máy chủ EC2 nằm trong các subnet riêng tư trong VPC của bạn. ALB hoạt động ở lớp 7 của mô hình OSI (lớp ứng dụng), cho phép nó phân phối lưu lượng dựa trên nội dung yêu cầu HTTP/HTTPS, chẳng hạn như đường dẫn URL hoặc header.\nChức năng của Target Group Target Group là một nhóm các tài nguyên (chẳng hạn như các instance EC2) mà ALB sẽ gửi lưu lượng truy cập đến. Trong mô hình này, các target group chứa các instance EC2 nằm trong các subnet riêng tư. ALB sẽ theo dõi tình trạng của các instance này và chỉ gửi lưu lượng đến những instance khỏe mạnh, đảm bảo tính sẵn sàng cao của ứng dụng.\n"
+},
+{
+	"uri": "/vi/2-prerequisites/2.01-createvpc/",
+	"title": "Tạo VPC ",
+	"tags": [],
+	"description": "",
+	"content": "Tạo VPC Lab VPC Truy cập giao diện quản trị dịch vụ VPC Click Your VPC. Click Create VPC. Tại trang Create VPC. Chọn VPC only Tại mục Name tag điền Lab-VPC. Tại mục IPv4 CIDR điền : 10.10.0.0/16. Click Create VPC. "
+},
+{
+	"uri": "/vi/2-prerequisites/",
+	"title": "Các bước chuẩn bị",
+	"tags": [],
+	"description": "",
+	"content": " Bạn cần chuẩn bị tài khoản AWS để làm bài Lab này. Và nhớ xoá tất cả tài nguyên sau khi hoàn tất để tránh mất thêm chi phí.\nTrong bài lab này mình sẽ sử dụng region Singapore.\nNội dung Tạo VPC Tạo Subnet Cấu hình Route table Tạo Internet gateway Tạo NAT gateway Tạo Security group Tạo Instances Tạo Target group Tạo ALB "
+},
+{
+	"uri": "/vi/2-prerequisites/2.02-createsubnet/2.2.2-createprivatesubnet/",
+	"title": "Tạo Private subnet",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Private subnet Theo mô hình thì chúng ta sẽ tạo 2 private subnet trên 2 AZ khác nhau.\nClick Subnets. Click Create subnet. Tại trang Create subnet. Tại mục VPC ID click chọn Lab VPC. Tại mục Subnet name điền Lab-Private-Subnet-01. Tại mục Availability Zone chọn Asia Pacific (Singapore) / ap-southeast-1a. Tại mục IPv4 CIRD block điền 10.10.2.0/24. Kéo xuống cuối trang , click Add new subnet. Tại mục Subnet name điền Lab-Private-Subnet-02. Tại mục Availability Zone chọn Asia Pacific (Singapore) / ap-southeast-1b. Tại mục IPv4 CIRD block điền 10.10.4.0/24. Click Create subnet Kết quả "
+},
+{
+	"uri": "/vi/2-prerequisites/2.02-createsubnet/2.2.1-createpublicsubnet/",
+	"title": "Tạo Public subnet",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Public subnet Theo mô hình thì chúng ta sẽ tạo 2 public subnet trên 2 AZ khác nhau.\nClick Subnets. Click Create subnet. Tại trang Create subnet. Tại mục VPC ID click chọn Lab VPC. Tại mục Subnet name điền Lab-Public-Subnet-01. Tại mục Availability Zone chọn Asia Pacific (Singapore) / ap-southeast-1a. Tại mục IPv4 CIRD block điền 10.10.1.0/24. Kéo xuống cuối trang , click Add new subnet. Tại mục Subnet name điền Lab-Public-Subnet-02. Tại mục Availability Zone chọn Asia Pacific (Singapore) / ap-southeast-1b. Tại mục IPv4 CIRD block điền 10.10.3.0/24. Click Create subnet Cấu hình Enable auto-assign public IPv4 address cho 2 public subnet Click Lab-Public-Subnet-01 Click Actions. Click Edit subnet settings. Click chọn Enable auto-assign public IPv4 address. Click Save. Làm tương tự cho subnet Lab-Public-Subnet-02 "
+},
+{
+	"uri": "/vi/2-prerequisites/2.02-createsubnet/",
+	"title": "Tạo Subnet",
+	"tags": [],
+	"description": "",
+	"content": "Nội dung Subnet trong AWS giống như việc chia nhỏ một mạng lớn thành các phần nhỏ hơn. Điều này giúp bạn dễ dàng quản lý và bảo vệ các tài nguyên của mình. Ví dụ, bạn có thể tách các máy chủ có thể truy cập từ internet ra một nơi riêng (public subnet) và giữ các máy chủ nội bộ an toàn ở nơi khác (private subnet). Điều này giúp bảo vệ và quản lý tài nguyên của bạn hiệu quả hơn.\nTạo Public Subnet Tạo Private Subnet "
+},
+{
+	"uri": "/vi/2-prerequisites/2.03-configroutetable/",
+	"title": "Cấu hình Route table",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Route table Tạo public route table Click Route tables. Click Create route table. Tại trang Create route table. Tại mục Name điền LAB-Public-RouteTable. Tại mục VPC click chọn Lab-VPC. Click Create route table Tạo private route table Click Route tables. Click Create route table. Tại trang Create route table. Tại mục Name điền LAB-Private-RouteTable. Tại mục VPC click chọn Lab-VPC. Click Create route table Kết quả Cập nhập subnet associations Chọn LAB-Public-RouteTable. Click Actions Click Edit subnet associations Chọn Lab-Public-Subnet-01 và Lab-Public-Subnet-02 Click Save associations Làm tương tự với LAB-Private-RouteTable "
+},
+{
+	"uri": "/vi/3-testing/",
+	"title": "Kiểm tra",
+	"tags": [],
+	"description": "",
+	"content": " Kiểm tra Healthy Di chuyển qua màn hình Target group Click LAB-TARGET-GROUP và kiểm tra phần healthy Như kết quả từ ảnh trên có nghĩa là ALB của chúng ta đã có thể kết nối vào 2 instance\nKiểm tra bằng trình duyệt Di chuyển qua màn hình Load balancers Click LAB-ALB và kiểm tra DNS name ( Chúng ta sẽ sử dụng DNS này để truy cập. ) Khi truy cập vào DNS trên bằng trình duyệt chúng ta sẽ nhận kết quả như hình dưới Bạn có thể kiểm tra sự thay đổi bằng cách refresh trình duyệt. Và đó là cách mà ALB giúp chúng ta cân bằng tải những request kết nối vào instance "
+},
+{
+	"uri": "/vi/4-clear/",
+	"title": "Dọn dẹp resources",
+	"tags": [],
+	"description": "",
+	"content": " Xoá ALB Di chuyển qua màn hình Load balancers Click LAB-ALB Click Actions Click Delete load balancer Xoá Target group Di chuyển qua màn hình Target groups Click LAB-TARGET-GROUP Click Actions Click Delete Xoá Instances Di chuyển qua màn hình Instances Click LAB-EC2-PRIVATE-01 và LAB-EC2-PRIVATE-02 Click instance state Click Terminate instance Xoá Security group Di chuyển qua màn hình Instances Click LAB-INSTANCE-SG và LAB-ALB-SG Click Actions Click Delete security group Xoá NAT gateways Di chuyển qua màn hình NAT gateways Click LAB-NAT-GATEWAY Click Actions Click Delete NAT gateway Xoá Elastic IPs Di chuyển qua màn hình Elastic IP addresses Chọn IP mà chúng ta đã tạo Click Actions Click Release Elastic IP addresses Xoá Internet gateways Di chuyển qua màn hình Internet gateways Click LAB-IGW Click Actions Click Detach from VPC Click LAB-IGW Click Actions Click Delete internet gateway Xoá VPC Di chuyển qua màn hình Your VPCs Click LAB-VPC Click Actions Click Delete VPC "
+},
+{
+	"uri": "/vi/2-prerequisites/2.04-createinternetgateway/",
+	"title": "Tạo Internet Gateway",
+	"tags": [],
+	"description": "",
+	"content": "Nội dung Internet Gateway trong AWS là cổng giúp kết nối mạng của bạn (VPC) với internet. Nó cho phép các tài nguyên trong mạng, như máy chủ, có thể truy cập internet và ngược lại. Nếu bạn muốn các máy chủ của mình có thể truy cập được từ bên ngoài, bạn cần phải gắn Internet Gateway vào VPC của mình. Đây là thành phần cần thiết để máy chủ trong public subnet có thể giao tiếp với internet.\nTạo Internet Gateway Click internet gateways. Click Create internet gateway. Tại trang Create internet gateway. Tại mục Name điền LAB-IGW. Click Create internet gateway Attach Internet Gateway vào VPC Click actions. Click Attach to VPC Tại mục Available VPCs chọn LAB-VPC Click Attach internet gateway Kết quả Cập nhập Internet Gateway cho route table public. Chọn route table LAB-Public-RouteTable. Click actions. Click Edit routes Tại trang Edit routes. Click Add route Tại mục Destination điền 0.0.0.0/0. Tại mục Target chọn internet gateway vừa khởi tạo. Click Save changes Cấu hình IGW vào Public Route Table cho phép các tài nguyên trong public subnet kết nối và giao tiếp với internet.\n"
+},
+{
+	"uri": "/vi/5-bonus/",
+	"title": "Phần ôn tập kiến thức",
+	"tags": [],
+	"description": "",
+	"content": " Xin chúc mừng bạn đã xuất sắc hoàn thành workshop này! Đây là một cột mốc quan trọng trong hành trình học tập của bạn. Để củng cố và kiểm tra lại những kiến thức mà bạn đã tiếp thu, chúng ta sẽ cùng tham gia vào một trò chơi nhỏ. Trò chơi bao gồm 20 #### Câu hỏi, và việc trả lời đúng sẽ giúp bạn xác nhận sự hiểu biết sâu sắc của mình. Chúc bạn thật nhiều may mắn và thành công!\nClick vào chữ Hiển thị đáp án để hiển thị kết quả\nCâu hỏi 1: Mục đích của một Internet Gateway (IGW) trong sơ đồ là gì? A) Kết nối VPC với các mạng nội bộ khác. B) Kết nối VPC với internet. C) Định tuyến lưu lượng giữa các subnets. D) Quản lý lưu lượng truy cập đến NAT Gateway. Hiển thị đáp án - B) Kết nối VPC với internet. Giải thích: IGW cho phép các instance trong VPC có thể truy cập internet và ngược lại. Câu hỏi 2: Route table cho public subnet trong sơ đồ có mục đích gì? A) Định tuyến lưu lượng tới các mạng nội bộ khác. B) Định tuyến lưu lượng tới internet thông qua IGW. C) Định tuyến lưu lượng tới các subnet khác thông qua NAT Gateway. D) Định tuyến lưu lượng tới các EC2 instances khác. Hiển thị đáp án - B) Định tuyến lưu lượng tới internet thông qua IGW. Giải thích: Public route table định tuyến lưu lượng từ public subnet tới internet thông qua IGW. Câu hỏi 3: Mục đích của NAT Gateway trong sơ đồ là gì? A) Kết nối EC2 instances trong private subnet với internet mà không công khai IP. B) Kết nối tất cả các subnet với internet. C) Định tuyến lưu lượng tới các subnet khác. D) Kết nối các subnets với nhau. Hiển thị đáp án - A) Kết nối EC2 instances trong private subnet với internet mà không công khai IP. Giải thích: NAT Gateway cho phép các instance trong private subnet kết nối ra ngoài internet mà không cần gán IP công khai. Câu hỏi 4: Trong sơ đồ, các EC2 instances ở private subnet có thể truy cập internet bằng cách nào? A) Thông qua Internet Gateway trực tiếp. B) Thông qua NAT Gateway. C) Thông qua Direct Connect. D) Không thể truy cập internet từ private subnet. Hiển thị đáp án - B) Thông qua NAT Gateway. Giải thích: Các EC2 instances trong private subnet sử dụng NAT Gateway để truy cập internet. Câu hỏi 5: Private target group trong sơ đồ dùng để làm gì? A) Định tuyến lưu lượng tới các EC2 instances công khai. B) Định tuyến lưu lượng tới các EC2 instances trong private subnet. C) Định tuyến lưu lượng tới các dịch vụ bên ngoài VPC. D) Định tuyến lưu lượng giữa các subnets. Hiển thị đáp án - B) Định tuyến lưu lượng tới các EC2 instances trong private subnet. Giải thích: Private target group là một tập hợp các EC2 instances trong private subnet, dùng cho mục đích cân bằng tải. Câu hỏi 6: Public subnet trong sơ đồ chứa gì? A) Các EC2 instances private. B) Các NAT Gateway và Load Balancer. C) Các EC2 instances public và private. D) Chỉ có Load Balancer. Hiển thị đáp án - B) Các NAT Gateway và Load Balancer. Giải thích: Public subnet chứa các thành phần cần kết nối trực tiếp với internet, như NAT Gateway và Load Balancer. Câu hỏi 7: Route table cho private subnet trong sơ đồ sẽ định tuyến lưu lượng tới đâu? A) Trực tiếp tới Internet Gateway. B) Trực tiếp tới NAT Gateway. C) Trực tiếp tới public subnet. D) Trực tiếp tới các EC2 instances khác. Hiển thị đáp án - B) Trực tiếp tới NAT Gateway. Giải thích: Route table của private subnet định tuyến lưu lượng từ private subnet tới internet thông qua NAT Gateway. Câu hỏi 8: Tại sao lại có nhiều Availability Zone trong sơ đồ? A) Để tối ưu hóa chi phí triển khai. B) Để tăng cường tính khả dụng và dự phòng. C) Để tăng tốc độ truy cập mạng nội bộ. D) Để giảm bớt việc quản lý subnet. Hiển thị đáp án - B) Để tăng cường tính khả dụng và dự phòng. Giải thích: Sử dụng nhiều Availability Zone giúp tăng tính khả dụng của hệ thống trong trường hợp một Zone gặp sự cố. Câu hỏi 9: Mục đích chính của Load Balancer trong sơ đồ là gì? A) Định tuyến lưu lượng giữa các VPC khác nhau. B) Phân phối lưu lượng đến các EC2 instances trong public subnet. C) Phân phối lưu lượng đến các EC2 instances trong private subnet. D) Quản lý lưu lượng truy cập đến các dịch vụ AWS khác. Hiển thị đáp án - C) Phân phối lưu lượng đến các EC2 instances trong private subnet. Giải thích: Load Balancer giúp phân phối lưu lượng đến các EC2 instances trong private subnet để đảm bảo cân bằng tải. Câu hỏi 10: Mạng con nào trong sơ đồ có thể trực tiếp truy cập internet mà không cần thông qua NAT Gateway? A) Private subnet 10.10.2.0/24. B) Private subnet 10.10.4.0/24. C) Public subnet 10.10.1.0/24. D) Không mạng con nào có thể truy cập internet trực tiếp. Hiển thị đáp án - C) Public subnet 10.10.1.0/24. Giải thích: Chỉ các mạng con công khai (public subnets) có thể truy cập internet trực tiếp thông qua IGW. Câu hỏi 11: Cấu trúc VPC trong sơ đồ thuộc loại nào? A) VPC đơn giản với một Availability Zone. B) VPC với nhiều Availability Zone. C) VPC không có subnet công khai. D) VPC không có NAT Gateway. Hiển thị đáp án - B) VPC với nhiều Availability Zone. Giải thích: VPC này được thiết kế với nhiều Availability Zone để tăng tính khả dụng và dự phòng. Câu hỏi 12: Các subnet trong sơ đồ này có phải thuộc cùng một Availability Zone không? A) Đúng, tất cả đều thuộc cùng một Availability Zone. B) Sai, các subnet thuộc các Availability Zone khác nhau. C) Một số thuộc cùng một Availability Zone, số còn lại thuộc Zone khác. D) Không có thông tin về Availability Zone. Hiển thị đáp án - B) Sai, các subnet thuộc các Availability Zone khác nhau. Giải thích: Các subnet trong sơ đồ được phân bố trên nhiều Availability Zone để tăng tính khả dụng. Câu hỏi 13: Mạng con nào trong sơ đồ này sẽ chứa các EC2 instances không có IP công khai? A) Public subnet 10.10.1.0/24. B) Public subnet 10.10.3.0/24. C) Private subnet 10.10.2.0/24. D) Không có mạng con nào chứa các EC2 instances như vậy. Hiển thị đáp án - C) Private subnet 10.10.2.0/24. Giải thích: Các EC2 instances không có IP công khai thường được triển khai trong private subnet. Câu hỏi 14: Route table của public subnet có định tuyến trực tiếp tới NAT Gateway không? A) Có. B) Không. C) Tùy thuộc vào cấu hình cụ thể. D) Chỉ trong một số trường hợp. Hiển thị đáp án - B) Không. Giải thích: Public route table thường không cần định tuyến tới NAT Gateway, vì public subnet có thể trực tiếp truy cập internet qua IGW. Câu hỏi 15: Các EC2 instances trong private subnet có thể bị truy cập trực tiếp từ internet không? A) Có. B) Không. C) Chỉ trong một số trường hợp. D) Tùy thuộc vào cấu hình bảo mật. Hiển thị đáp án - B) Không. Giải thích: Các EC2 instances trong private subnet không thể bị truy cập trực tiếp từ internet vì chúng không có IP công khai. Câu hỏi 16: Lý do chính để sử dụng NAT Gateway thay vì chỉ sử dụng Internet Gateway là gì? A) Để giảm chi phí kết nối. B) Để tăng cường bảo mật cho các instances trong private subnet. C) Để định tuyến lưu lượng nhanh hơn. D) Để cung cấp địa chỉ IP công khai cho tất cả các instances. Hiển thị đáp án - B) Để tăng cường bảo mật cho các instances trong private subnet. Giải thích: NAT Gateway cho phép các instances trong private subnet truy cập internet mà vẫn giữ bảo mật cao. Câu hỏi 17: Khi một EC2 instance trong private subnet gửi yêu cầu ra ngoài internet, địa chỉ IP nào sẽ được hiển thị với dịch vụ bên ngoài? A) Địa chỉ IP công khai của EC2 instance. B) Địa chỉ IP riêng của EC2 instance. C) Địa chỉ IP của NAT Gateway. D) Địa chỉ IP của Internet Gateway. Hiển thị đáp án - C) Địa chỉ IP của NAT Gateway. Giải thích: Khi truy cập internet thông qua NAT Gateway, IP công khai của NAT Gateway sẽ được hiển thị. Câu hỏi 18: Load Balancer trong sơ đồ này thường được triển khai ở đâu? A) Public subnet. B) Private subnet. C) Ngoài VPC. D) Trong một mạng riêng biệt. Hiển thị đáp án - A) Public subnet. Giải thích: Load Balancer thường được triển khai trong public subnet để nhận lưu lượng từ internet trước khi phân phối đến các EC2 instances. Câu hỏi 19: Route table nào sẽ được gán cho các EC2 instances trong private subnet? A) Public route table. B) Private route table. C) Default route table. D) Internet route table. Hiển thị đáp án - B) Private route table. Giải thích: Các EC2 instances trong private subnet sẽ sử dụng private route table để định tuyến lưu lượng qua NAT Gateway. Câu hỏi 20: Mục đích chính của một VPC (Virtual Private Cloud) là gì? A) Tạo ra một môi trường mạng công cộng cho các dịch vụ AWS. B) Cung cấp một môi trường mạng riêng biệt trong AWS để triển khai các tài nguyên AWS. C) Kết nối các mạng nội bộ của doanh nghiệp với AWS. D) Định tuyến lưu lượng giữa các vùng địa lý khác nhau. Hiển thị đáp án - B) Cung cấp một môi trường mạng riêng biệt trong AWS để triển khai các tài nguyên AWS. Giải thích: VPC cho phép tạo ra một môi trường mạng riêng biệt, nơi bạn có thể triển khai và quản lý các tài nguyên AWS một cách an toàn. "
+},
+{
+	"uri": "/vi/2-prerequisites/2.05-createnat/",
+	"title": "Tạo NAT Gateway",
+	"tags": [],
+	"description": "",
+	"content": "Nội dung NAT Gateway trong AWS là công cụ giúp các máy chủ trong private subnet có thể truy cập internet mà vẫn giữ an toàn, không bị truy cập từ bên ngoài. Nó hoạt động như một cầu nối, cho phép các máy chủ này tải về các bản cập nhật hoặc liên lạc với các dịch vụ khác trên internet, nhưng không để lộ địa chỉ IP của chúng ra ngoài.\nĐể có thể tạo và sử dụng được NAT gateway chúng ta sẽ cần tạo Elastic IP trước.\nTạo Elastic IP Elastic IP trong AWS là một địa chỉ IP tĩnh mà bạn có thể gán cho các tài nguyên như máy chủ EC2. Điều này giúp đảm bảo rằng địa chỉ IP của bạn không thay đổi, ngay cả khi bạn khởi động lại hoặc thay đổi phiên bản máy chủ. Elastic IP rất hữu ích khi bạn cần duy trì một địa chỉ IP cố định để các ứng dụng hoặc người dùng có thể dễ dàng truy cập, ngay cả khi hạ tầng bên dưới có thay đổi.\nClick Elastic IPs. Click Allocate Elastic IP address. Tại trang Allocate Elastic IP address. Để cấu hình mặc định và có thể thêm tag nếu muốn. Click Allocate Tạo NAT Gateway Click NAT gateways. Click Create NAT gateway Tại trang Create NAT gateway. Tại mục Name nhập LAB-NAT-GATEWAY. Tại mục Subnet chọn Lab-Public-Subnet-02. Tại mục Elastic IP allocation ID chọn Elastic IP mà ta vừa khởi tạo. Click Create NAT gateway NAT gateway sẽ cần mất một khoảng thời gian để khởi tạo và có thể sử dụng. kiểm tra cột State để biết kết quả.\nCập nhập NAT Gateway cho route table private. Chọn route table LAB-Private-RouteTable. Click actions. Click Edit routes Tại trang Edit routes. Click Add route Tại mục Destination điền 0.0.0.0/0. Tại mục Target chọn NAT gateway vừa khởi tạo. Click Save changes Cấu hình NAT Gateway vào Private Route Table cho phép các tài nguyên trong private subnet truy cập internet mà không bị truy cập từ bên ngoài.\n"
+},
+{
+	"uri": "/vi/2-prerequisites/2.06-createsg/",
+	"title": "Tạo Security Group",
+	"tags": [],
+	"description": "",
+	"content": "Nội dung Security Group (SG) là một tường lửa ảo trong AWS, giúp kiểm soát và quản lý luồng lưu lượng đến và đi từ các tài nguyên như EC2 instances. Nó hoạt động dựa trên các quy tắc mà bạn định nghĩa, cho phép hoặc chặn lưu lượng dựa trên địa chỉ IP, giao thức, và cổng. Security Group giúp đảm bảo rằng chỉ những kết nối hợp lệ và an toàn mới được phép truy cập vào tài nguyên của bạn, tăng cường bảo mật hệ thống.\nỞ bài lab này chúng ta sẽ tạo 2 Security Group . 1 Security Group dành cho Application Load Balancer và 1 Security Group dành cho các EC2.\nTạo Security Group cho ALB Click Security groups. Click Create security group. Tại trang Create security group. Tại mục Security group name nhập LAB-ALB-SG. Tại mục Description nhập allow http from internet. Tại mục VPC chọn LAB-VPC. Tại mục Inbound rules chọn Add rule. Cấu hình type HTTP và source Anywhere-IPv4 Click Create security group Tạo Security Group cho EC2 Click Security groups. Click Create security group. Tại trang Create security group. Tại mục Security group name nhập LAB-INSTANCE-SG. Tại mục Description nhập allow http connect from alb. Tại mục VPC chọn LAB-VPC. Tại mục Inbound rules chọn Add rule. Cấu hình type HTTP và source chọn SG của ALB vừa khởi tạo LAB-ALB-SG Click Create security group Kết quả "
+},
+{
+	"uri": "/vi/2-prerequisites/2.07-createec2s/",
+	"title": "Tạo EC2",
+	"tags": [],
+	"description": "",
+	"content": "Nội dung EC2 (Elastic Compute Cloud) là dịch vụ cung cấp máy chủ ảo trên AWS, cho phép bạn chạy các ứng dụng và dịch vụ với tài nguyên tính toán có thể tùy chỉnh theo nhu cầu. EC2 giúp bạn triển khai, quản lý, và mở rộng hệ thống dễ dàng mà không cần đầu tư vào phần cứng vật lý.\nỞ bài lab này chúng ta sẽ tạo 2 EC2 nằm ở 2 AZ khác nhau.\nTạo EC2 Nhập từ khoá ec2 vào thanh tìm kiếm và chọn dịch vụ EC2 Khởi chạy instance Click Instances. Click Launch instances. Tại trang Launch an instance. Tại mục Name nhập LAB-EC2-PRIVATE-01. Tại mục Application and OS Images (Amazon Machine Image) chọn Amazon Linux 2023 AMI. Tại mục Instance type chọn t2.micro. Tại mục Key pair (login) chọn Proceed without a key pair (Not recommended) (Ở bài lab này mình không có ssh vào instance nên không cần khởi tạo key pair). Tại mục Network settings chọn Edit. Tại mục VPC chọn LAB-VPC. Tại mục Subnet chọn Lab-Private-Subnet-01. Tại mục Auto-assign public IP chọn Disabled. Tại mục Firewall (security groups) chọn Select existing security group. Tại mục Common security groups chọn LAB-INSTANCE-SG. Ở bước tiếp theo chúng ta sẽ tạo một trang web đơn giản chạy trên instance.\nTại mục Advanced details click vào và cuộn xuống cuối trang Tại mục User data - optional sao chép và dán đoạn script bên dưới vào. #!/bin/bash yum update -y yum install -y httpd systemctl start httpd systemctl enable httpd echo \u0026#34;\u0026lt;h1\u0026gt;Hello World from $(hostname -f)\u0026lt;/h1\u0026gt;\u0026#34; \u0026gt; /var/www/html/index.html Tạo instance thứ hai tương tự instance thứ nhất ( các mục cần thay đổi). Tại mục Name nhập LAB-EC2-PRIVATE-02. Tại mục Subnet chọn Lab-Private-Subnet-02. Kết quả "
+},
+{
+	"uri": "/vi/2-prerequisites/2.08-createtargetgroup/",
+	"title": "Tạo Target Group",
+	"tags": [],
+	"description": "",
+	"content": "Nội dung Tạo Target Group Click Target Groups. Click Create target group. Tại trang Specify group details. Tại mục Basic configuration chọn Instances. Tại mục Target group name nhập LAB-TARGET-GROUP. Tại mục Protocol : Port nhập HTTP và cổng 80 Tại mục IP address type chọn IPv4 Tại mục VPC nhập LAB-VPC. Tại mục Protocol version chọn HTTP1 Click Next Tại trang Register targets. Tại mục Available instances chọn 2 instance chúng ta vừa khởi tạo Click Include as pending below Click Create target group Kết quả "
+},
+{
+	"uri": "/vi/2-prerequisites/2.09-createalb/",
+	"title": "Tạo Application Load Balancer",
+	"tags": [],
+	"description": "",
+	"content": "Nội dung Tạo Application Load Balancer (ALB) Click Load Balancers. Click Create load balancer. Tại trang Compare and select load balancer type. Click Create tại phần Application Load Balancer Tại trang Create Application Load Balancer. Tại mục Load balancer name nhập LAB-ALB Tại mục VPC nhập LAB-VPC Tại mục Availability Zones chọn Lab-Public-Subnet-01 và Lab-Public-Subnet-02 Tại mục Security groups chọn LAB-ALB-SG Tại mục Listeners and routing cấu hình forward to sang target group mà chúng ta vừa tạo. Click Create load balancer Kết quả Kiểm tra cột Status để xem trạng thái của ALB "
+},
+{
+	"uri": "/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
