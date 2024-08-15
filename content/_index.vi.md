@@ -10,7 +10,7 @@ chapter : false
 
  Trong bài lab này, bạn sẽ khám phá các khái niệm cơ bản và thực hành sử dụng **Amazon Application Load Balancer**. Bạn sẽ học cách thiết lập kết nối và cân bằng tải cho ứng dụng nằm trong các máy chủ riêng tư bên trong một VPC.
 
-![ConnectPrivate](/images/ALB.drawio.png) 
+![ConnectPrivate](/images/ALB1.drawio.png) 
 
 ### Nội dung
 
