@@ -1,132 +1,132 @@
 [
 {
-	"uri": "//localhost:1313/",
+	"uri": "/",
 	"title": "Application Load Balancer",
 	"tags": [],
 	"description": "",
 	"content": "Thiết kế hệ thông cân bằng tải cho các máy chủ riêng tư sử dụng Application Load Balancer Tổng quan Trong bài lab này, bạn sẽ khám phá các khái niệm cơ bản và thực hành sử dụng Amazon Application Load Balancer. Bạn sẽ học cách thiết lập kết nối và cân bằng tải cho ứng dụng nằm trong các máy chủ riêng tư bên trong một VPC.\nNội dung Giới thiệu Các bước chuẩn bị Kiểm tra Dọn dẹp tài nguyên Phần ôn tập kiến thức "
 },
 {
-	"uri": "//localhost:1313/2-prerequisites/2.01-createvpc/",
+	"uri": "/2-prerequisites/2.01-createvpc/",
 	"title": "Create VPC ",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/1-introduce/",
+	"uri": "/1-introduce/",
 	"title": "Introduction",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/2-prerequisites/2.02-createsubnet/2.2.2-createprivatesubnet/",
+	"uri": "/2-prerequisites/2.02-createsubnet/2.2.2-createprivatesubnet/",
 	"title": "Create Private subnet",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/2-prerequisites/2.02-createsubnet/2.2.1-createpublicsubnet/",
+	"uri": "/2-prerequisites/2.02-createsubnet/2.2.1-createpublicsubnet/",
 	"title": "Create Public subnet",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/2-prerequisites/2.02-createsubnet/",
+	"uri": "/2-prerequisites/2.02-createsubnet/",
 	"title": "Create Subnet",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/2-prerequisites/",
+	"uri": "/2-prerequisites/",
 	"title": "Prerequisites",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/2-prerequisites/2.03-configroutetable/",
+	"uri": "/2-prerequisites/2.03-configroutetable/",
 	"title": "Config Route table",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/3-testing/",
+	"uri": "/3-testing/",
 	"title": "Testing",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/4-clear/",
+	"uri": "/4-clear/",
 	"title": "Clear resources",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/2-prerequisites/2.04-createinternetgateway/",
+	"uri": "/2-prerequisites/2.04-createinternetgateway/",
 	"title": "Create Internet Gateway",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/5-bonus/",
+	"uri": "/5-bonus/",
 	"title": "Bonus",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/2-prerequisites/2.05-createnat/",
+	"uri": "/2-prerequisites/2.05-createnat/",
 	"title": "Create NAT Gateway",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/2-prerequisites/2.06-createsg/",
+	"uri": "/2-prerequisites/2.06-createsg/",
 	"title": "Create Security Group",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/2-prerequisites/2.07-createec2s/",
+	"uri": "/2-prerequisites/2.07-createec2s/",
 	"title": "Create EC2",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/2-prerequisites/2.08-createtargetgroup/",
+	"uri": "/2-prerequisites/2.08-createtargetgroup/",
 	"title": "Create Target Group",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/2-prerequisites/2.09-createalb/",
+	"uri": "/2-prerequisites/2.09-createalb/",
 	"title": "Create Application Load Balancer",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/categories/",
+	"uri": "/categories/",
 	"title": "Categories",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/tags/",
+	"uri": "/tags/",
 	"title": "Tags",
 	"tags": [],
 	"description": "",

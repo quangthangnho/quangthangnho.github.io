@@ -2,232 +2,232 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/vi/</loc>
+    <loc>/vi/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/"
+                href="/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/"
+                href="/vi/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/1-introduce/</loc>
+    <loc>/vi/1-introduce/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/1-introduce/"
+                href="/1-introduce/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/1-introduce/"
+                href="/vi/1-introduce/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-prerequisites/2.01-createvpc/</loc>
+    <loc>/vi/2-prerequisites/2.01-createvpc/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-prerequisites/2.01-createvpc/"
+                href="/2-prerequisites/2.01-createvpc/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-prerequisites/2.01-createvpc/"
+                href="/vi/2-prerequisites/2.01-createvpc/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-prerequisites/</loc>
+    <loc>/vi/2-prerequisites/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-prerequisites/"
+                href="/2-prerequisites/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-prerequisites/"
+                href="/vi/2-prerequisites/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-prerequisites/2.02-createsubnet/2.2.2-createprivatesubnet/</loc>
+    <loc>/vi/2-prerequisites/2.02-createsubnet/2.2.2-createprivatesubnet/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-prerequisites/2.02-createsubnet/2.2.2-createprivatesubnet/"
+                href="/2-prerequisites/2.02-createsubnet/2.2.2-createprivatesubnet/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-prerequisites/2.02-createsubnet/2.2.2-createprivatesubnet/"
+                href="/vi/2-prerequisites/2.02-createsubnet/2.2.2-createprivatesubnet/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-prerequisites/2.02-createsubnet/2.2.1-createpublicsubnet/</loc>
+    <loc>/vi/2-prerequisites/2.02-createsubnet/2.2.1-createpublicsubnet/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-prerequisites/2.02-createsubnet/2.2.1-createpublicsubnet/"
+                href="/2-prerequisites/2.02-createsubnet/2.2.1-createpublicsubnet/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-prerequisites/2.02-createsubnet/2.2.1-createpublicsubnet/"
+                href="/vi/2-prerequisites/2.02-createsubnet/2.2.1-createpublicsubnet/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-prerequisites/2.02-createsubnet/</loc>
+    <loc>/vi/2-prerequisites/2.02-createsubnet/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-prerequisites/2.02-createsubnet/"
+                href="/2-prerequisites/2.02-createsubnet/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-prerequisites/2.02-createsubnet/"
+                href="/vi/2-prerequisites/2.02-createsubnet/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-prerequisites/2.03-configroutetable/</loc>
+    <loc>/vi/2-prerequisites/2.03-configroutetable/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-prerequisites/2.03-configroutetable/"
+                href="/2-prerequisites/2.03-configroutetable/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-prerequisites/2.03-configroutetable/"
+                href="/vi/2-prerequisites/2.03-configroutetable/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/3-testing/</loc>
+    <loc>/vi/3-testing/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/3-testing/"
+                href="/3-testing/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/3-testing/"
+                href="/vi/3-testing/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/4-clear/</loc>
+    <loc>/vi/4-clear/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/4-clear/"
+                href="/4-clear/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/4-clear/"
+                href="/vi/4-clear/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-prerequisites/2.04-createinternetgateway/</loc>
+    <loc>/vi/2-prerequisites/2.04-createinternetgateway/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-prerequisites/2.04-createinternetgateway/"
+                href="/2-prerequisites/2.04-createinternetgateway/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-prerequisites/2.04-createinternetgateway/"
+                href="/vi/2-prerequisites/2.04-createinternetgateway/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/5-bonus/</loc>
+    <loc>/vi/5-bonus/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/5-bonus/"
+                href="/5-bonus/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/5-bonus/"
+                href="/vi/5-bonus/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-prerequisites/2.05-createnat/</loc>
+    <loc>/vi/2-prerequisites/2.05-createnat/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-prerequisites/2.05-createnat/"
+                href="/2-prerequisites/2.05-createnat/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-prerequisites/2.05-createnat/"
+                href="/vi/2-prerequisites/2.05-createnat/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-prerequisites/2.06-createsg/</loc>
+    <loc>/vi/2-prerequisites/2.06-createsg/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-prerequisites/2.06-createsg/"
+                href="/2-prerequisites/2.06-createsg/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-prerequisites/2.06-createsg/"
+                href="/vi/2-prerequisites/2.06-createsg/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-prerequisites/2.07-createec2s/</loc>
+    <loc>/vi/2-prerequisites/2.07-createec2s/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-prerequisites/2.07-createec2s/"
+                href="/2-prerequisites/2.07-createec2s/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-prerequisites/2.07-createec2s/"
+                href="/vi/2-prerequisites/2.07-createec2s/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-prerequisites/2.08-createtargetgroup/</loc>
+    <loc>/vi/2-prerequisites/2.08-createtargetgroup/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-prerequisites/2.08-createtargetgroup/"
+                href="/2-prerequisites/2.08-createtargetgroup/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-prerequisites/2.08-createtargetgroup/"
+                href="/vi/2-prerequisites/2.08-createtargetgroup/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/2-prerequisites/2.09-createalb/</loc>
+    <loc>/vi/2-prerequisites/2.09-createalb/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-prerequisites/2.09-createalb/"
+                href="/2-prerequisites/2.09-createalb/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-prerequisites/2.09-createalb/"
+                href="/vi/2-prerequisites/2.09-createalb/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/categories/</loc>
+    <loc>/vi/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/categories/"
+                href="/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/categories/"
+                href="/vi/categories/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/tags/</loc>
+    <loc>/vi/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/tags/"
+                href="/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/tags/"
+                href="/vi/tags/"
                 />
   </url>
 </urlset>

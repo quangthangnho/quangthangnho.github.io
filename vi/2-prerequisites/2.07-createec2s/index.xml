@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tạo EC2 on AWS System Manager</title>
-    <link>//localhost:1313/vi/2-prerequisites/2.07-createec2s/</link>
+    <link>/vi/2-prerequisites/2.07-createec2s/</link>
     <description>Recent content in Tạo EC2 on AWS System Manager</description>
     <generator>Hugo</generator>
     <language>vi</language>
-    <atom:link href="//localhost:1313/vi/2-prerequisites/2.07-createec2s/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/vi/2-prerequisites/2.07-createec2s/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

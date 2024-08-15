@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tạo Subnet on AWS System Manager</title>
-    <link>//localhost:1313/vi/2-prerequisites/2.02-createsubnet/</link>
+    <link>/vi/2-prerequisites/2.02-createsubnet/</link>
     <description>Recent content in Tạo Subnet on AWS System Manager</description>
     <generator>Hugo</generator>
     <language>vi</language>
-    <atom:link href="//localhost:1313/vi/2-prerequisites/2.02-createsubnet/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/vi/2-prerequisites/2.02-createsubnet/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
